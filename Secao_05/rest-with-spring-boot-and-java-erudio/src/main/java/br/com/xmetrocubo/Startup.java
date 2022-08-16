@@ -1,4 +1,4 @@
-package br.com.xmetrocubo.restwithspringbootandjavaerudio;
+package br.com.xmetrocubo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
