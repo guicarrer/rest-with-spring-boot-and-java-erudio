@@ -9,13 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.xmetrocubo</groupId>
-	<artifactId>rest-with-spring-boot-and-java-erudio</artifactId>
+	<artifactId>udemy-spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rest-with-spring-boot-and-java-erudio</name>
+	<name>udemy-spring</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>18</java.version>
-		<dozer.version>6.4.0</dozer.version>
+		<dozer.version>6.5.2</dozer.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -36,6 +36,7 @@
 			<version>${dozer.version}</version>
 		</dependency>
 
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -48,7 +49,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>

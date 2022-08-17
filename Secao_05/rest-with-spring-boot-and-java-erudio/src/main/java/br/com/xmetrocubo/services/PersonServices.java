@@ -1,8 +1,10 @@
 package br.com.xmetrocubo.services;
 
 import br.com.xmetrocubo.data.vo.v1.PersonVO;
+import br.com.xmetrocubo.data.vo.v2.PersonVOV2;
 import br.com.xmetrocubo.exceptions.ResourceNotFoundException;
 import br.com.xmetrocubo.mapper.DozerMapper;
+import br.com.xmetrocubo.mapper.custom.PersonMapper;
 import br.com.xmetrocubo.model.Person;
 import br.com.xmetrocubo.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,10 @@ public class PersonServices {
     private Logger logger = Logger.getLogger(PersonServices.class.getName());
 
     @Autowired
-    private PersonRepository repository;
+    PersonRepository repository;
+
+    @Autowired
+    PersonMapper personMapper;
 
     public PersonVO findById(Long id){
         logger.info("Finding one PersonVO");
@@ -35,6 +40,13 @@ public class PersonServices {
         logger.info("Creating one PersonVO");
         var entity = DozerMapper.parseObject(person, Person.class);
         var vo =  DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        return vo;
+    }
+
+    public PersonVOV2 createV2(PersonVOV2 person) {
+        logger.info("Creating one PersonVO");
+        var entity = personMapper.convertVoToEntity(person);
+        var vo =  personMapper.convertEntityToVo(repository.save(entity));
         return vo;
     }
 
