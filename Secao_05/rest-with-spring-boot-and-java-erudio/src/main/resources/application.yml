@@ -5,6 +5,6 @@ spring:
     username: udemy
     password: GGss4840
   jpa:
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: none
     generate-ddl: true
     show-sql: false
