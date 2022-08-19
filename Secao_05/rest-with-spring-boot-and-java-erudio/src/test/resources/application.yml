@@ -1,9 +1,11 @@
+server:
+  port: 8888
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/rest_with_spring_boot_udemy?useTimezone=true&serverTimezone=UTC
-    username: udemy
-    password: GGss4840
+    url:
+    username:
+    password: 
   jpa:
     hibernate.ddl-auto: none
     generate-ddl: true
