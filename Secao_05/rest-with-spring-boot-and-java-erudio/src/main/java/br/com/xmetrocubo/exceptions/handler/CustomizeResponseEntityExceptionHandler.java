@@ -1,6 +1,7 @@
 package br.com.xmetrocubo.exceptions.handler;
 
 import br.com.xmetrocubo.exceptions.ExceptionResponse;
+import br.com.xmetrocubo.exceptions.InvalidJwtAuthenticationException;
 import br.com.xmetrocubo.exceptions.RequiredObjectIsNullException;
 import br.com.xmetrocubo.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -30,9 +31,15 @@ public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExcep
     }
 
     @ExceptionHandler(RequiredObjectIsNullException.class)
-    public final ResponseEntity<ExceptionResponse> handleBadRequestException(Exception ex, WebRequest request){
+    public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(Exception ex, WebRequest request){
         ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidJwtAuthenticationException.class)
+    public final ResponseEntity<ExceptionResponse> handleInvalidJwtAuthenticationExceptions(Exception ex, WebRequest request){
+        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
     }
 
 }
