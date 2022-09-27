@@ -7,7 +7,6 @@ import br.com.xmetrocubo.integrationtests.testcontainers.AbstractIntegrationTest
 import br.com.xmetrocubo.integrationtests.vo.AccountCredentialsVO;
 import br.com.xmetrocubo.integrationtests.vo.PersonVO;
 import br.com.xmetrocubo.integrationtests.vo.pagedmodels.PageModelPerson;
-import br.com.xmetrocubo.integrationtests.vo.wrappers.WrapperPersonVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import io.restassured.builder.RequestSpecBuilder;
@@ -402,7 +401,7 @@ public class PersonControllerYMLTest extends AbstractIntegrationTest {
         assertTrue(content.contains("rel: \"self\"\n  href: \"http://localhost:8888/api/person/v1?page=0&size=10&direction=asc\""));
         assertTrue(content.contains("rel: \"next\"\n  href: \"http://localhost:8888/api/person/v1?direction=asc&page=1&size=10&sort=firstName,asc\""));
         assertTrue(content.contains("rel: \"last\"\n  href: \"http://localhost:8888/api/person/v1?direction=asc&page=100&size=10&sort=firstName,asc\""));
-        assertTrue(content.contains("page:\n  size: 10\n  totalElements: 1008\n  totalPages: 101\n  number: 0"));
+        assertTrue(content.contains("page:\n  size: 10\n  totalElements: 1007\n  totalPages: 101\n  number: 0"));
     }
 
     private void mockPerson(){
