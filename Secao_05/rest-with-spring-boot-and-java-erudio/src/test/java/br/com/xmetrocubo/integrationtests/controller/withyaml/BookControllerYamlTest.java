@@ -6,6 +6,7 @@ import br.com.xmetrocubo.integrationtests.testcontainers.AbstractIntegrationTest
 import br.com.xmetrocubo.integrationtests.vo.AccountCredentialsVO;
 import br.com.xmetrocubo.integrationtests.vo.BookVO;
 import br.com.xmetrocubo.integrationtests.vo.TokenVO;
+import br.com.xmetrocubo.integrationtests.vo.pagedmodels.PageModelBook;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import io.restassured.builder.RequestSpecBuilder;
@@ -213,6 +214,7 @@ public class BookControllerYamlTest extends AbstractIntegrationTest {
                                     .encodeContentTypeAs(TestConfigs.CONTENT_TYPE_YML, ContentType.TEXT)))
                     .spec(specification)
                 .contentType(TestConfigs.CONTENT_TYPE_YML)
+                .queryParams("page", 0, "size", 10, "direction", "asc")
 				.accept(TestConfigs.CONTENT_TYPE_YML)
                     .when()
                     .get()
@@ -220,32 +222,64 @@ public class BookControllerYamlTest extends AbstractIntegrationTest {
                     .statusCode(200)
                         .extract()
                         .body()
-                        .as(BookVO[].class, objectMapper); 
+                        .as(PageModelBook.class, objectMapper);
 
 
-        List<BookVO> content = Arrays.asList(response);
+        List<BookVO> books = response.getContent();
 
-        BookVO foundBookOne = content.get(0);
-        
+        BookVO foundBookOne = books.get(0);
+
         assertNotNull(foundBookOne.getId());
         assertNotNull(foundBookOne.getTitle());
         assertNotNull(foundBookOne.getAuthor());
         assertNotNull(foundBookOne.getPrice());
         assertTrue(foundBookOne.getId() > 0);
-        assertEquals("Working effectively with legacy code", foundBookOne.getTitle());
-        assertEquals("Michael C. Feathers", foundBookOne.getAuthor());
-        assertEquals(49.00, foundBookOne.getPrice());
-        
-        BookVO foundBookFive = content.get(4);
-        
+        assertEquals("Big Data: como extrair volume, variedade, velocidade e valor da avalanche de informação cotidiana", foundBookOne.getTitle());
+        assertEquals("Viktor Mayer-Schonberger e Kenneth Kukier", foundBookOne.getAuthor());
+        assertEquals(54.00, foundBookOne.getPrice());
+
+        BookVO foundBookFive = books.get(4);
+
         assertNotNull(foundBookFive.getId());
         assertNotNull(foundBookFive.getTitle());
         assertNotNull(foundBookFive.getAuthor());
         assertNotNull(foundBookFive.getPrice());
         assertTrue(foundBookFive.getId() > 0);
-        assertEquals("Code complete", foundBookFive.getTitle());
-        assertEquals("Steve McConnell", foundBookFive.getAuthor());
-        assertEquals(58.0, foundBookFive.getPrice());
+        assertEquals("Domain Driven Design", foundBookFive.getTitle());
+        assertEquals("Eric Evans", foundBookFive.getAuthor());
+        assertEquals(92.0, foundBookFive.getPrice());
+    }
+
+    @Test
+    @Order(7)
+    public void testeHATEOAS() throws JsonMappingException, JsonProcessingException {
+        var content
+                = given()
+                .config(
+                        RestAssuredConfig
+                                .config()
+                                .encoderConfig(EncoderConfig.encoderConfig()
+                                        .encodeContentTypeAs(TestConfigs.CONTENT_TYPE_YML, ContentType.TEXT)))
+                .spec(specification)
+                .contentType(TestConfigs.CONTENT_TYPE_YML)
+                .queryParams("page", 0, "size", 10, "direction", "asc")
+                .accept(TestConfigs.CONTENT_TYPE_YML)
+                .when()
+                .get()
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .asString();
+
+        assertTrue(content.contains("rel: \"self\"\n    href: \"http://localhost:8888/api/book/v1/15\""));
+        assertTrue(content.contains("rel: \"self\"\n    href: \"http://localhost:8888/api/book/v1/5\""));
+        assertTrue(content.contains("rel: \"self\"\n    href: \"http://localhost:8888/api/book/v1/2\""));
+        assertTrue(content.contains("rel: \"first\"\n  href: \"http://localhost:8888/api/book/v1?direction=asc&page=0&size=10&sort=title,asc\""));
+        assertTrue(content.contains("rel: \"self\"\n  href: \"http://localhost:8888/api/book/v1?page=0&size=10&direction=asc\""));
+        assertTrue(content.contains("rel: \"next\"\n  href: \"http://localhost:8888/api/book/v1?direction=asc&page=1&size=10&sort=title,asc\""));
+        assertTrue(content.contains("rel: \"last\"\n  href: \"http://localhost:8888/api/book/v1?direction=asc&page=1&size=10&sort=title,asc\""));
+        assertTrue(content.contains("page:\n  size: 10\n  totalElements: 15\n  totalPages: 2\n  number: 0"));
     }
      
     private void mockBook() {

@@ -6,6 +6,8 @@ import br.com.xmetrocubo.integrationtests.controller.withyaml.mapper.YMLMapper;
 import br.com.xmetrocubo.integrationtests.testcontainers.AbstractIntegrationTest;
 import br.com.xmetrocubo.integrationtests.vo.AccountCredentialsVO;
 import br.com.xmetrocubo.integrationtests.vo.PersonVO;
+import br.com.xmetrocubo.integrationtests.vo.pagedmodels.PageModelPerson;
+import br.com.xmetrocubo.integrationtests.vo.wrappers.WrapperPersonVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import io.restassured.builder.RequestSpecBuilder;
@@ -20,7 +22,6 @@ import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -258,13 +259,14 @@ public class PersonControllerYMLTest extends AbstractIntegrationTest {
     @Order(6)
     public void testFindAll() throws IOException, JsonProcessingException  {
 
-        var content = given().spec(specification)
+        var wrapper = given().spec(specification)
                 .config(
                         RestAssuredConfig
                                 .config()
                                 .encoderConfig(EncoderConfig.encoderConfig()
                                         .encodeContentTypeAs(TestConfigs.CONTENT_TYPE_YML, ContentType.TEXT)))
                 .contentType(TestConfigs.CONTENT_TYPE_YML)
+                .queryParams("page", 3, "size", 10, "direction", "asc")
                 .accept(TestConfigs.CONTENT_TYPE_YML)
                     .when()
                     .get()
@@ -272,9 +274,9 @@ public class PersonControllerYMLTest extends AbstractIntegrationTest {
                     .statusCode(200)
                         .extract()
                         .body()
-                            .as(PersonVO[].class, objectMapper);//                            .as(new TypeRef<List<PersonVO>>() { });
+                            .as(PageModelPerson.class, objectMapper);//                            .as(new TypeRef<List<PersonVO>>() { });
 
-        List<PersonVO> people = Arrays.asList(content);
+        List<PersonVO> people = wrapper.getContent();
 
         PersonVO foundPersonOne = people.get(0);
 
@@ -285,12 +287,11 @@ public class PersonControllerYMLTest extends AbstractIntegrationTest {
         assertNotNull(foundPersonOne.getGender());
         assertTrue(foundPersonOne.getEnabled());
 
-        assertEquals(1, foundPersonOne.getId());
-
-        assertEquals("Guilherme", foundPersonOne.getFirstName());
-        assertEquals("Sa", foundPersonOne.getLastName());
-        assertEquals("Brasil", foundPersonOne.getAddress());
-        assertEquals("Male", foundPersonOne.getGender());
+        assertEquals(354, foundPersonOne.getId());
+        assertEquals("Aloisia", foundPersonOne.getFirstName());
+        assertEquals("Fulun", foundPersonOne.getLastName());
+        assertEquals("711 Valley Edge Drive", foundPersonOne.getAddress());
+        assertEquals("Female", foundPersonOne.getGender());
 
         PersonVO foundPersonSix = people.get(5);
 
@@ -301,11 +302,11 @@ public class PersonControllerYMLTest extends AbstractIntegrationTest {
         assertNotNull(foundPersonSix.getGender());
         assertTrue(foundPersonSix.getEnabled());
 
-        assertEquals(9, foundPersonSix.getId());
+        assertEquals(437, foundPersonSix.getId());
 
-        assertEquals("Nelson", foundPersonSix.getFirstName());
-        assertEquals("Mandela", foundPersonSix.getLastName());
-        assertEquals("Africa do Sul", foundPersonSix.getAddress());
+        assertEquals("Alyosha", foundPersonSix.getFirstName());
+        assertEquals("Corbin", foundPersonSix.getLastName());
+        assertEquals("49 Novick Junction", foundPersonSix.getAddress());
         assertEquals("Male", foundPersonSix.getGender());
     }
 
@@ -331,6 +332,77 @@ public class PersonControllerYMLTest extends AbstractIntegrationTest {
                 .get()
                 .then()
                 .statusCode(403);
+    }
+
+    @Test
+    @Order(8)
+    public void testFindByName() throws IOException, JsonProcessingException  {
+
+        var wrapper = given().spec(specification)
+                .config(
+                        RestAssuredConfig
+                                .config()
+                                .encoderConfig(EncoderConfig.encoderConfig()
+                                        .encodeContentTypeAs(TestConfigs.CONTENT_TYPE_YML, ContentType.TEXT)))
+                .contentType(TestConfigs.CONTENT_TYPE_YML)
+                .pathParam("firstName", "ayr")
+                .queryParams("page", 0, "size", 6, "direction", "asc")
+                .accept(TestConfigs.CONTENT_TYPE_YML)
+                .when()
+                .get("findPersonByName/{firstName}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .as(PageModelPerson.class, objectMapper);//                            .as(new TypeRef<List<PersonVO>>() { });
+
+        List<PersonVO> people = wrapper.getContent();
+
+        PersonVO foundPersonOne = people.get(0);
+
+        assertNotNull(foundPersonOne.getId());
+        assertNotNull(foundPersonOne.getFirstName());
+        assertNotNull(foundPersonOne.getLastName());
+        assertNotNull(foundPersonOne.getAddress());
+        assertNotNull(foundPersonOne.getGender());
+        assertTrue(foundPersonOne.getEnabled());
+
+        assertEquals(2, foundPersonOne.getId());
+        assertEquals("Ayrton", foundPersonOne.getFirstName());
+        assertEquals("Senna", foundPersonOne.getLastName());
+        assertEquals("Brasil", foundPersonOne.getAddress());
+        assertEquals("Male", foundPersonOne.getGender());
+    }
+
+    @Test
+    @Order(9)
+    public void testeHATEOAS() throws IOException, JsonProcessingException  {
+
+        var content = given().spec(specification)
+                .config(
+                        RestAssuredConfig
+                                .config()
+                                .encoderConfig(EncoderConfig.encoderConfig()
+                                        .encodeContentTypeAs(TestConfigs.CONTENT_TYPE_YML, ContentType.TEXT)))
+                .contentType(TestConfigs.CONTENT_TYPE_YML)
+                .queryParams("page", 0, "size", 10, "direction", "asc")
+                .accept(TestConfigs.CONTENT_TYPE_YML)
+                .when()
+                .get()
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .asString();
+
+        assertTrue(content.contains("rel: \"self\"\n    href: \"http://localhost:8888/api/person/v1/499\""));
+        assertTrue(content.contains("rel: \"self\"\n    href: \"http://localhost:8888/api/person/v1/522\""));
+        assertTrue(content.contains("rel: \"self\"\n    href: \"http://localhost:8888/api/person/v1/561\""));
+        assertTrue(content.contains("rel: \"first\"\n  href: \"http://localhost:8888/api/person/v1?direction=asc&page=0&size=10&sort=firstName,asc\""));
+        assertTrue(content.contains("rel: \"self\"\n  href: \"http://localhost:8888/api/person/v1?page=0&size=10&direction=asc\""));
+        assertTrue(content.contains("rel: \"next\"\n  href: \"http://localhost:8888/api/person/v1?direction=asc&page=1&size=10&sort=firstName,asc\""));
+        assertTrue(content.contains("rel: \"last\"\n  href: \"http://localhost:8888/api/person/v1?direction=asc&page=100&size=10&sort=firstName,asc\""));
+        assertTrue(content.contains("page:\n  size: 10\n  totalElements: 1008\n  totalPages: 101\n  number: 0"));
     }
 
     private void mockPerson(){
