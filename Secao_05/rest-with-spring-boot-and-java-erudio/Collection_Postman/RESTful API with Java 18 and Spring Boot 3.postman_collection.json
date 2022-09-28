@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "61e9326a-dbaf-4877-b63f-93755c926c9c",
+		"_postman_id": "f26bbcb8-cc09-48b3-81ff-0c86f20f7d2c",
 		"name": "RESTful API with Java 18 and Spring Boot 3",
 		"description": "Some description about your API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -12,6 +12,215 @@
 			"item": [
 				{
 					"name": "Finds all People",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:3000",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/x-yaml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/person/v1?page=0&size=10&direction=asc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"person",
+								"v1"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "direction",
+									"value": "asc"
+								}
+							]
+						},
+						"description": "Finds all People"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/person/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": 842208,\n    \"firstName\": \"qui adipisicing in\",\n    \"lastName\": \"\",\n    \"address\": \"labore culpa esse\",\n    \"gender\": \"aute culpa\",\n    \"_links\": {\n      \"incididunt_c6\": {\n        \"href\": \"proident dolore deserunt mollit\",\n        \"hreflang\": \"consequat proident reprehenderit qui\",\n        \"title\": \"dolore et aute\",\n        \"type\": \"aliqua anim id nulla\",\n        \"deprecation\": \"enim cupidatat\",\n        \"profile\": \"veniam consect\",\n        \"name\": \"eiusmod magna commodo\",\n        \"templated\": true\n      }\n    }\n  },\n  {\n    \"id\": 48396209,\n    \"firstName\": \"enim nostrud culpa\",\n    \"lastName\": \"labore eu elit occaecat\",\n    \"address\": \"aute nostrud exercitation commodo\",\n    \"gender\": \"fugiat\",\n    \"_links\": {\n      \"auteb\": {\n        \"href\": \"nostrud consequat id\",\n        \"hreflang\": \"irure Excepteur non\",\n        \"title\": \"sit culpa consectetur veniam dolore\",\n        \"type\": \"voluptate in veniam non ipsum\",\n        \"deprecation\": \"anim\",\n        \"profile\": \"exercitation sint non mollit\",\n        \"name\": \"elit deserunt velit\",\n        \"templated\": false\n      }\n    }\n  }\n]"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Internal Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Finds People by Name",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -31,19 +240,21 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/api/person/v1?page=3&size=10&direction=asc",
+							"raw": "{{baseUrl}}/api/person/v1/findPersonByName/ayr?page=0&size=10&direction=asc",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
 								"person",
-								"v1"
+								"v1",
+								"findPersonByName",
+								"ayr"
 							],
 							"query": [
 								{
 									"key": "page",
-									"value": "3"
+									"value": "0"
 								},
 								{
 									"key": "size",
@@ -1397,12 +1608,30 @@
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json"
+								"value": "application/json",
+								"disabled": true
 							},
 							{
 								"key": "Authorization",
 								"value": "Bearer {{accessToken}}",
 								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/x-yaml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -2590,6 +2819,635 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "file/v1",
+			"item": [
+				{
+					"name": "Upload a file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Origin",
+								"value": "https://erudio.com.br",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8080",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/gui/Downloads/Italia_Declaracao.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/file/v1/uploadFile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"file",
+								"v1",
+								"uploadFile"
+							]
+						},
+						"description": "Adds a new Person by passing in JSON, XML or YML representation of the person!"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Internal Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Upload multiple files",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Origin",
+								"value": "https://erudio.com.br",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8080",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": [
+										"/Users/gui/Downloads/27_09_2022 10_50 Microsoft Lens.pdf",
+										"/Users/gui/Downloads/RG_Marina_2022.jpg",
+										"/Users/gui/Downloads/RG_Marina_2022.pdf",
+										"/Users/gui/Downloads/teste1.png",
+										"/Users/gui/Downloads/tete.pdf"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/file/v1/uploadMultipleFiles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"file",
+								"v1",
+								"uploadMultipleFiles"
+							]
+						},
+						"description": "Adds a new Person by passing in JSON, XML or YML representation of the person!"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Internal Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Download a file",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Origin",
+								"value": "https://erudio.com.br",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Origin",
+								"value": "http://localhost:8080",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/file/v1/downloadFile/{filename}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"file",
+								"v1",
+								"downloadFile",
+								"{filename}"
+							]
+						},
+						"description": "Adds a new Person by passing in JSON, XML or YML representation of the person!"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Internal Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": -3176123,\n  \"firstName\": \"ullamco non Duis pariatur in\",\n  \"lastName\": \"ad mollit esse pariatur\",\n  \"address\": \"dolor elit Duis consectetur sit\",\n  \"gender\": \"cupidatat ad\",\n  \"_links\": {\n    \"nulla_93\": {\n      \"href\": \"ex\",\n      \"hreflang\": \"laboris est incididunt\",\n      \"title\": \"incididunt sint\",\n      \"type\": \"quis fugiat cupidatat\",\n      \"deprecation\": \"magna ipsum\",\n      \"profile\": \"Ut commodo\",\n      \"name\": \"aliqua cill\",\n      \"templated\": true\n    },\n    \"fugiat8e\": {\n      \"href\": \"et fugiat Duis consectetur Ut\",\n      \"hreflang\": \"ut sunt aliquip et\",\n      \"title\": \"commodo tempor reprehenderit consectetur\",\n      \"type\": \"culpa\",\n      \"deprecation\": \"ut irure\",\n      \"profile\": \"laborum nostrud\",\n      \"name\": \"et cupidatat Ut Excepteur\",\n      \"templated\": true\n    },\n    \"qui__\": {\n      \"href\": \"pariatur dolore do nisi\",\n      \"hreflang\": \"dolore\",\n      \"title\": \"fugiat adipisicing exercitation culpa veniam\",\n      \"type\": \"ea enim elit in\",\n      \"deprecation\": \"quis deserunt ea\",\n      \"profile\": \"esse tempor\",\n      \"name\": \"ut voluptate culpa non\",\n      \"templated\": false\n    },\n    \"elite85\": {\n      \"href\": \"ipsum fugiat\",\n      \"hreflang\": \"consequat culpa occaecat\",\n      \"title\": \"dolor\",\n      \"type\": \"culpa anim officia ea\",\n      \"deprecation\": \"laboris esse cupidatat tempor\",\n      \"profile\": \"exercitation dolore officia\",\n      \"name\": \"aliquip Lorem\",\n      \"templated\": false\n    },\n    \"dolor_4\": {\n      \"href\": \"ipsum Lorem consectetur\",\n      \"hreflang\": \"irure ea laboris aliqua ad\",\n      \"title\": \"ex do\",\n      \"type\": \"voluptate sunt Duis\",\n      \"deprecation\": \"magna culpa et ipsum\",\n      \"profile\": \"nisi do elit tempor\",\n      \"name\": \"in pariatur\",\n      \"templated\": true\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/person/v1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"person",
+										"v1"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
 				}
 			]
 		}
