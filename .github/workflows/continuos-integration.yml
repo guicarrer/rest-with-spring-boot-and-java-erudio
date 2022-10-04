@@ -3,11 +3,10 @@ name: Continuos Integration with Github Actions
 on:
   push:
     branches:
-      - sessao22
+      - main
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -39,6 +38,7 @@ jobs:
         docker tag ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-udemy:latest ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-udemy:${{ github.run_id }}
         
         docker push ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-udemy:${{ github.run_id }}
+        docker push ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-udemy:latest
         
         
         
