@@ -3,7 +3,6 @@ name: Continuos Integration with Github Actions
 on:
   push:
     branches:
-      - main
       - sessao22
 
 jobs:
