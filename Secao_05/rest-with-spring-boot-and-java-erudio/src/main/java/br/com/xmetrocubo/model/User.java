@@ -15,7 +15,6 @@ import java.util.Objects;
 @Table(name = "users")
 public class User implements UserDetails, Serializable {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id

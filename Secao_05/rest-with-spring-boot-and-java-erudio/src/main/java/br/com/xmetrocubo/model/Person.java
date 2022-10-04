@@ -10,7 +10,6 @@ import java.util.Objects;
 @Table(name = "person")
 public class Person implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
