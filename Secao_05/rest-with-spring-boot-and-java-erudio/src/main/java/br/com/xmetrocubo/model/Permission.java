@@ -11,6 +11,7 @@ import java.util.Objects;
 @Table(name = "permission")
 public class Permission implements GrantedAuthority, Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id

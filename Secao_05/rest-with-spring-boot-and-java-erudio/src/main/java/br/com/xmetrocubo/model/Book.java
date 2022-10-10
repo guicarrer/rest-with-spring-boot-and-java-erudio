@@ -11,6 +11,7 @@ import java.util.Objects;
 @Table(name = "books")
 public class Book implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
